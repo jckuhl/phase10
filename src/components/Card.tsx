@@ -45,13 +45,18 @@ const LetterSpan = styled.span`
 
 function RainbowLetters({ word }: {word: string}) {
     const letters = word.split('');
-    return (<React.Fragment>
-        <LetterSpan color={CardColor.RED}>{letters[0]}</LetterSpan>
-        <LetterSpan color={CardColor.GREEN}>{letters[1]}</LetterSpan>
-        <LetterSpan color={CardColor.YELLOW}>{letters[2]}</LetterSpan>
-        <LetterSpan color={CardColor.BLUE}>{letters[3]}</LetterSpan>
+    return <React.Fragment>
+        {letters.map((letter, index) => {
+            switch(index % 4) {
+                case 0: return <LetterSpan color={CardColor.RED}>{letter}</LetterSpan>;
+                case 1: return <LetterSpan color={CardColor.GREEN}>{letter}</LetterSpan>;
+                case 2: return <LetterSpan color={CardColor.YELLOW}>{letter}</LetterSpan>;
+                case 3: return <LetterSpan color={CardColor.BLUE}>{letter}</LetterSpan>;
+                default: return <LetterSpan color={CardColor.RED}>{letter}</LetterSpan>;
+            }
+        })}
     </React.Fragment>
-    )
+        
 }
 
 export default function Card({ card }: { card: PlayCard }) {
