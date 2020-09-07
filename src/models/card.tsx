@@ -14,7 +14,7 @@ export default class PlayCard {
     }
 
     constructor(
-        public value: CardType,
+        public value: {},
         public color: CardColor
     ){}
 }

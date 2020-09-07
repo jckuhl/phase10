@@ -47,11 +47,11 @@ function RainbowLetters({ word }: {word: string}) {
     const letters = word.split('');
     return <React.Fragment>
         {letters.map((letter, index) => {
-            const letterColors: { [key: number]: JSX.Element} = {
-                0: <LetterSpan color={CardColor.RED}>{letter}</LetterSpan>,
-                1: <LetterSpan color={CardColor.GREEN}>{letter}</LetterSpan>,
-                2: <LetterSpan color={CardColor.YELLOW}>{letter}</LetterSpan>,
-                3: <LetterSpan color={CardColor.BLUE}>{letter}</LetterSpan>
+            const letterColors: { [key: number]: JSX.Element } = {
+                0: <LetterSpan key={index} color={CardColor.RED}>{letter}</LetterSpan>,
+                1: <LetterSpan key={index} color={CardColor.GREEN}>{letter}</LetterSpan>,
+                2: <LetterSpan key={index} color={CardColor.YELLOW}>{letter}</LetterSpan>,
+                3: <LetterSpan key={index} color={CardColor.BLUE}>{letter}</LetterSpan>
             };
             return letterColors[index % 4];
         })}
@@ -62,13 +62,13 @@ export default function Card({ card }: { card: PlayCard }) {
     if(card.value === CardType.SKIP || card.value === CardType.WILD) {
         return (<Cardgrid>
             <CornerNumber color={CardColor.BLACK} rotation={Rotation.DEFAULT}>
-                <RainbowLetters word={card.value}/>
+                <RainbowLetters word={card.value === 13 ? "SKIP" : "WILD"}/>
             </CornerNumber>
             <MiddleNumber>
-                <RainbowLetters word={card.value}/>
+                <RainbowLetters word={card.value === 13 ? "SKIP" : "WILD"}/>
             </MiddleNumber>
             <CornerNumber color={CardColor.BLACK} rotation={Rotation.LEFT}>
-                <RainbowLetters word={card.value}/>
+                <RainbowLetters word={card.value === 13 ? "SKIP" : "WILD"}/>
             </CornerNumber>
         </Cardgrid>)
     } else {
