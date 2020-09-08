@@ -5,8 +5,11 @@ import CardGroup from "./cardgroup";
 
 export default class Deck extends CardGroup {
     
-    constructor() {
-        super();
+    private _populated = false;
+
+    public populate() {
+        if(this._populated) return;
+        this._populated = true;
         let colorNum = 0;
         const colorSwitch: { [key: number]: CardColor} = {
             0: CardColor.RED,
@@ -24,14 +27,13 @@ export default class Deck extends CardGroup {
         }
         const skips: PlayCard[] = new Array(4).fill(new PlayCard(13, CardColor.BLACK), 0, 4);
         const wilds: PlayCard[] = new Array(8).fill(new PlayCard(14, CardColor.BLACK), 0, 8);
-        console.log({ skips, wilds});
         this.cards = this.cards.concat(skips)
             .concat(wilds)
             .sort((a, b) => Math.random() - 0.5);
     }
 
-    public drawTopCard(): PlayCard | undefined {
-        return this.cards.shift();
+    public drawTopCard(): PlayCard {
+        return this.cards.splice(0, 1)[0];
     }
 
     public addCard(card: PlayCard | PlayCard[]) {

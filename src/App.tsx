@@ -1,6 +1,5 @@
 import React from 'react';
 import Deck from './models/deck';
-import Hand from './components/Hand';
 import Card from './components/Card';
 
 function App() {

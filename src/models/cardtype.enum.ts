@@ -15,4 +15,4 @@ const CardType = {
     WILD: 14
 }
 
-export default CardType;
+export default Object.freeze(CardType);
